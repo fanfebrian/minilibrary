@@ -35,7 +35,26 @@
   <div class="col-lg-12 d-flex align-items-stretch">
     <div class="card w-100">
       <div class="card-body p-4">
-        <h5 class="card-title fw-semibold mb-4">Daftar Buku</h5>
+      
+
+        <div class="row">
+          <div class="col-lg-6">
+            <h5 class="card-title fw-semibold mb-1">Daftar Buku</h5>
+          </div>
+
+          <div class="col-lg-6">
+              <div class="d-md-flex justify-content-md-end">
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-success" type="submit">Search</button>
+                </form>
+                <a href="/dashboard/books/create" target="" class="btn btn-primary mx-2">Tambah Buku +</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+
         <div class="table-responsive">
           <table class="table text-nowrap mb-0 align-middle">
             <thead class="text-dark fs-4">

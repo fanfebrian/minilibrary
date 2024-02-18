@@ -30,31 +30,69 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
         </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Profesi Peminjam</label>
-            <p>Tuliskan Profesi Peminjam Buku (Guru, Siswa, Dll)</p>
-            <input type="text"
-                class="form-control <?php $__errorArgs = ['profesi'];
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Profesi Peminjam</label>
+                    <p>Pilih Profesi Peminjaman</p>
+                    <select class="form-select" aria-label="Default select example <?php $__errorArgs = ['profesi'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                is-invalid
-                <?php unset($message);
+                        is-invalid
+                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" 
-                    id="exampleFormControlInput1" name="profesi" value="<?php echo e(old('profesi')); ?>">
-                <?php $__errorArgs = ['profesi'];
+unset($__errorArgs, $__bag); ?>"
+                        id="exampleFormControlInput1" name="profesi" value="<?php echo e(old('profesi')); ?>">
+                    <?php $__errorArgs = ['profesi'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                    <p style="color: red;"><?php echo e($message); ?></p>
-                <?php unset($message);
+                        <p style="color: red;"><?php echo e($message); ?></p>
+                    <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
+                        <option selected>Pilih Opsi Profesi</option>
+                        <option value="Guru">Guru</option>
+                        <option value="Siswa">Siswa</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Status</label>
+                    <p>Pilih Status Peminjaman</p>
+                    <select class="form-select" aria-label="Default select example <?php $__errorArgs = ['status'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        is-invalid
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>"
+                        id="exampleFormControlInput1" name="status" value="<?php echo e(old('status')); ?>">
+                    <?php $__errorArgs = ['status'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <p style="color: red;"><?php echo e($message); ?></p>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                        <option selected>Pilih Opsi Status</option>
+                        <option value="Dipinjam">Dipinjam</option>
+                    </select>
+                    
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Judul</label>

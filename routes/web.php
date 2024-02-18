@@ -7,9 +7,10 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\TambahbukuController;
-use App\Http\Controllers\KoleksiController;
+use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfilController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,9 +32,15 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard/home', [DashboardController::class, 'indexHome']);
-Route::get('/dashboard', [DashboardController::class, 'indexBuku']);
+Route::get('/dashboard', [DashboardController::class, 'indexHome']);
 
 Route::resource("/dashboard/bookings", BookingController::class);
 
-Route::get('/koleksi', [KoleksiController::class, 'index']);
+Route::get('/dashboard/collection', [CollectionController::class, 'index']);
 Route::resource("/dashboard/books", BookController::class);
+
+Route::get('/profil', [ProfilController::class, 'index'])->name('user-profile');
+Route::get('/profil/edit', [ProfilController::class, 'edit']);
+Route::post('/profil/update', [ProfilController::class, 'update']);
+
+Route::get('/generate-pdf', [BookController::class, 'generatePdf']);

@@ -19,16 +19,27 @@ return new class extends Migration {
     //     });
     // }
 
+    // $table->id();
+    // $table->string('name');
+    // $table->string('profesi');
+    // $table->string('title');
+    // $table->string('publisher');
+    // $table->integer('jumlah');
+    // $table->string('status');
+    // $table->timestamps();
+
+
 
     public function up(): void
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('profesi');
-            $table->string('title');
-            $table->string('publisher');
-            $table->integer('jumlah');
+            $table->increments('id');
+            $table->foreignId('book_id');
+            $table->foreignId('user_id');
+            $table->timestamp('return_date')->nullable();
+            $table->timestamp('expired_date')->nullable();
+            $table->string('status')->nullable();
+            $table->integer('isDenda')->nullable();
             $table->timestamps();
         });
     }

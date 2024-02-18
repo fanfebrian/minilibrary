@@ -85,6 +85,35 @@ endif;
 unset($__errorArgs, $__bag); ?>
                   </div>
                   <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Profession</label>
+                    <select class="form-select <?php $__errorArgs = ['profession'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                      is-invalid"
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                      id="exampleInputtext1" aria-label="Default select example" name="profession" value="<?php echo e(old('profession')); ?>">
+                      <option selected></option>
+                      <option value="Guru">Guru</option>
+                      <option value="Siswa">Siswa</option>
+                    <?php $__errorArgs = ['profession'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                      <p style="color: red;"><?php echo e($message); ?></p>
+                    <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+                    </select>
+                    
+                  </div>
+                  <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="text" class="form-control <?php $__errorArgs = ['username'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -132,6 +161,7 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                   </div>
+                  <input type="hidden" value="member" name="role">
                   <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">Sign Up</button>
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>

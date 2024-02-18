@@ -56,6 +56,27 @@
                     @enderror
                   </div>
                   <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Profession</label>
+                    <select class="form-select @error('profession')
+                      is-invalid"
+                    @enderror
+                      id="exampleInputtext1" aria-label="Default select example" name="profession" value="{{ old('profession') }}">
+                      <option selected></option>
+                      <option value="Guru">Guru</option>
+                      <option value="Siswa">Siswa</option>
+                    @error('profession')
+                      <p style="color: red;">{{ $message }}</p>
+                    @enderror
+                    </select>
+                    {{-- <input type="text" class="form-control @error('profession')
+                      is-invalid"
+                    @enderror
+                      id="exampleInputtext1" aria-describedby="textHelp" name="profession" value="{{ old('profession') }}">
+                    @error('profession')
+                      <p style="color: red;">{{ $message }}</p>
+                    @enderror --}}
+                  </div>
+                  <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Username</label>
                     <input type="text" class="form-control @error('username')
                       is-invalid"
@@ -75,6 +96,7 @@
                       <p style="color: red;">{{ $message }}</p>
                     @enderror
                   </div>
+                  <input type="hidden" value="member" name="role">
                   <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">Sign Up</button>
                   <div class="d-flex align-items-center justify-content-center">
                     <p class="fs-4 mb-0 fw-bold">Already have an Account?</p>

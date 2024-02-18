@@ -9,19 +9,26 @@ use Illuminate\Routing\Controller;
 class DashboardController extends Controller
 {
 
-    public function indexHome()
+    public function indexHome(Request $request)
     {
-        return view("dashboard",[
+        if ($request->filled('search_keyword')) {
+            $keyword = $request->input('search_keyword');
+            $books = Book::search($keyword)->get();
+        } else {
+            $books = Book::latest()->take(3)->get();
+        }
+        return view("dashboard", [
             'title' => 'Home',
-            'books' => Book::all()
+            'books' => $books,
+            'books_limit' => $books
         ]);
-    }
 
+    }
     public function indexBuku()
     {
-        return view("dashboard",[
+        return view("dashboard", [
             'title' => 'Buku',
-            'books' => Book::all()
+            'books_limit' => Book::latest()->take(3)->get()
         ]);
     }
 

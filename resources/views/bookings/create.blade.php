@@ -16,17 +16,48 @@
                 <p style="color: red;">{{ $message }}</p>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Profesi Peminjam</label>
-            <p>Tuliskan Profesi Peminjam Buku (Guru, Siswa, Dll)</p>
-            <input type="text"
-                class="form-control @error('profesi')
-                is-invalid
-                @enderror" 
-                    id="exampleFormControlInput1" name="profesi" value="{{ old('profesi') }}">
-                @error('profesi')
-                    <p style="color: red;">{{ $message }}</p>
-                @enderror
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Profesi Peminjam</label>
+                    <p>Pilih Profesi Peminjaman</p>
+                    <select class="form-select" aria-label="Default select example @error('profesi')
+                        is-invalid
+                    @enderror"
+                        id="exampleFormControlInput1" name="profesi" value="{{ old('profesi') }}">
+                    @error('profesi')
+                        <p style="color: red;">{{ $message }}</p>
+                    @enderror
+                        <option selected>Pilih Opsi Profesi</option>
+                        <option value="Guru">Guru</option>
+                        <option value="Siswa">Siswa</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Status</label>
+                    <p>Pilih Status Peminjaman</p>
+                    <select class="form-select" aria-label="Default select example @error('status')
+                        is-invalid
+                    @enderror"
+                        id="exampleFormControlInput1" name="status" value="{{ old('status') }}">
+                    @error('status')
+                        <p style="color: red;">{{ $message }}</p>
+                    @enderror
+                        <option selected>Pilih Opsi Status</option>
+                        <option value="Dipinjam">Dipinjam</option>
+                    </select>
+                    {{-- <input type="text" 
+                        class="form-control @error('status')
+                        is-invalid
+                        @enderror" 
+                            id="exampleFormControlInput1" name="status" value="{{ old('status') }}">
+                        @error('status')
+                            <p style="color: red;">{{ $message }}</p>
+                        @enderror --}}
+                </div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Judul</label>

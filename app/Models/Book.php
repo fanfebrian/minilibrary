@@ -18,5 +18,18 @@ class Book extends Model
         "description",
         "image"
     ];
+
+    public function scopeSearch($query, $keyword)
+    {
+        if ($keyword) {
+            return $query->where('title', 'like', "%$keyword%")
+                ->orWhere('description', 'like', "%$keyword%")
+                ->orWhere('author', 'like', "%$keyword%")
+                ->orWhere('publisher', 'like', "%$keyword%")
+                ->orWhere('genre', 'like', "%$keyword%");
+        }
+        return $query;
+    }
+
     use HasFactory;
 }

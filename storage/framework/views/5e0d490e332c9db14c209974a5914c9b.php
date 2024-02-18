@@ -1,27 +1,29 @@
-<aside class="left-sidebar">
-    <!-- Sidebar scroll-->
-    <div>
-      <div class="brand-logo d-flex align-items-center justify-content-between">
-        <a href="/login" class="text-nowrap logo-img">
-          <img src="<?php echo e(asset('images/logos/dark-logo.svg')); ?>" width="180" alt="" />
-        </a>
-        <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
-          <i class="ti ti-x fs-8"></i>
-        </div>
+<?php if(auth()->user()->role === 'member'): ?>
+    
+<?php else: ?>
+<aside class="left-sidebar" style="background-color: rgb(6, 41, 63)">
+  <!-- Sidebar scroll-->
+  <div>
+    <div class="brand-logo d-flex align-items-center justify-content-between">
+      <a href="/login" class="text-nowrap logo-img">
+        <img src="<?php echo e(asset('images/logos/blue-logo.svg')); ?>" width="180" alt="" />
+      </a>
+      <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+        <i class="ti ti-x fs-8"></i>
       </div>
-      <!-- Sidebar navigation-->
+    </div>
       <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
         <ul id="sidebarnav">
           <li class="nav-small-cap">
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-            <span class="hide-menu">Dashboard</span>
+            <span class="hide-menu" style="color: white">Dashboard</span>
           </li>
           <li class="sidebar-item">
             <a class="sidebar-link" href="/dashboard/home" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
-              <span class="hide-menu">Home</span>
+              <span class="hide-menu  ">Home</span>
             </a>
           </li>
           <li class="sidebar-item">
@@ -41,8 +43,10 @@
             </a>
           </li>
           
-      </nav>
-      <!-- End Sidebar navigation -->
+<?php endif; ?>
+        </nav>
+    <!-- End Sidebar navigation -->
     </div>
-    <!-- End Sidebar scroll-->
-</aside><?php /**PATH C:\Users\My Device\Downloads\minilibrary\resources\views/layouts/partials/sidebar.blade.php ENDPATH**/ ?>
+<!-- End Sidebar scroll-->
+</aside>
+<?php /**PATH C:\Users\My Device\Downloads\minilibrary\resources\views/layouts/partials/sidebar.blade.php ENDPATH**/ ?>

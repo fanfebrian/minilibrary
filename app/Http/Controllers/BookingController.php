@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\File;
 use App\Models\Booking;
+use App\Models\Book;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
 
@@ -16,7 +17,8 @@ class BookingController extends Controller
     {
         return view('bookings.index', [
             'name' => 'Bookings',
-            'bookings' => Booking::all()
+            'bookings' => Booking::where('user_id', auth()->user()->id)->get(),
+            'bookings_admin' => Booking::all()
         ]);
     }
 
@@ -41,16 +43,15 @@ class BookingController extends Controller
         //     'publisher' => ['required', 'min:1'],
         // ]);
         $data = $request->validate([
-            'name' => ['required', 'max:50', 'min:3'],
-            'profesi' => ['required', 'min:3'],
-            'title' => ['required', 'max:50', 'min:3'],
-            'publisher' => ['required', 'min:5'],
-            'jumlah' => ['required']
+            'user_id' => ['required'],
+            'book_id' => ['required'],
+            'status' => ['required'],
+            'isDenda' => ['required']
         ]);
         // $request->file('image')->store('book-images');
         // return ddd($request->file('image'));
         Booking::create($data);
-        return redirect('/dashboard/bookings')->with('success', 'Data Peminjaman Berhasil Di Tambahkan');
+        return redirect('/dashboard/bookings')->with('success', 'Peminjaman Berhasil Diajukan Silahkan Ambil Buku Anda di Perpustakaan');
     }
 
     /**
@@ -81,12 +82,40 @@ class BookingController extends Controller
     public function update(UpdateBookingRequest $request, Booking $booking)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'max:50', 'min:3'],
-            'profesi' => ['required', 'min:3'],
-            'title' => ['required', 'max:50', 'min:3'],
-            'publisher' => ['required', 'min:5'],
-            'jumlah' => ['required']
+            'status' => ['required']
         ]);
+
+        if ($validatedData['status'] === 'Dipinjam') {
+            Book::where('id', $booking->book_id)->update([
+                'stock' => $booking->book->stock - 1,
+            ]);
+        }
+
+        if ($validatedData['status'] === 'Dikembalikan') {
+            Book::where('id', $booking->book_id)->update([
+                'stock' => $booking->book->stock + 1,
+            ]);
+        }
+
+        if ($validatedData['status'] === 'Dikembalikan Terlambat') {
+            Book::where('id', $booking->book_id)->update([
+                'stock' => $booking->book->stock + 1,
+            ]);
+        }
+
+        if ($validatedData['status'] === 'Dikembalikan Terlambat') {
+            Booking::where('id', $booking->id)->update([
+                'isDenda' => 1,
+            ]);
+
+            if ($booking->isDenda === 0) {
+                $message = "-";
+            } else {
+                $message = "Anda Terkena Denda";
+            }
+
+            echo $message;
+        }
 
         // if (request()->hasFile('image') && request('image') != '') {
         //     $imagePath = public_path('storage/' . $book->image);
